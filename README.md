@@ -1,5 +1,5 @@
 # flask-forecast-viewer
-___
+
 Flask-forecast-viewer is a Flask-server that scrapes data from [buienradar.nl](buienradar.nl), creates visualizations using Matplotlib and puts it in a dynamic website using Flask. We're planning on hosting the first working version of the server on [weather.taekeroukema.xyz](https://taekeroukema.xyz)
 
 ## How to install
