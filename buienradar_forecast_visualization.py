@@ -48,7 +48,7 @@ nl = '\n'
 class ForecastVizualization():
 
     def __init__(self):
-        self.zip_file = fr'c:\data\forecasts.zip'
+        self.zip_file = fr'results/forecasts.zip'
 
     def store_item(self, k, v, day):
         self.days[k][day.get('datetime')].append([self.ts, v])
