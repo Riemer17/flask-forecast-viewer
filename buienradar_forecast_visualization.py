@@ -101,17 +101,18 @@ class ForecastVizualization():
         for i in range(len(df)):
             for j in range(len(df.columns)):
                 if not str(df.iloc[i, j]) == str(np.nan):
-                    text = ax.text(j, i, df.iloc[i, j], ha="center", va="center", color="black")
+                    text = ax.text(j, i, df.iloc[i, j], ha="center", va="center",
+                                   color="black", fontsize=4)
 
     def set_ticks(self, ax, df):
         # We want to show all ticks...
         ax.set_xticks(np.arange(len(df.columns)))
         ax.set_yticks(np.arange(len(df)))
         # ... and label them with the respective list entries
-        ax.set_xticklabels(df.columns)
-        ax.set_yticklabels(df.index)
+        ax.set_xticklabels([d.split('T')[0] for d in df.columns])
+        ax.set_yticklabels([d.split('T')[0] for d in df.index])
         #     ax.xaxis.set_ticks_position("top")
-        plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+        plt.setp(ax.get_xticklabels(), rotation=90, ha="right", rotation_mode="anchor")
 
     def visualize_category(self, category):
         self.handle_key(category)
@@ -119,7 +120,7 @@ class ForecastVizualization():
         df_hm2 = self.df_hm[self.df_hm.index >= first_day]
         df_hm2 = df_hm2.dropna(how='all', axis=1).sort_index(axis=0).sort_index(axis=1, ascending=False)
         vmin, vmax = self.min_max(category)
-        fig, ax = plt.subplots(figsize=(75, 75))
+        fig, ax = plt.subplots(figsize=(30, 30))
         im = ax.imshow(df_hm2, cmap=self.get_rvb(category), interpolation='nearest', vmin=vmin, vmax=vmax)
         self.set_annotations(ax, df_hm2)
         self.set_ticks(ax, df_hm2)
