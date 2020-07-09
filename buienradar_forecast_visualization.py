@@ -12,7 +12,7 @@ from pandas.tseries.offsets import BDay
 import matplotlib.colors as mcolors
 
 
-pd.set_option('display.max_colwidth', -1)
+pd.set_option('display.max_colwidth', None)
 
 
 def tag(the_tag, txt, attributes=''):
