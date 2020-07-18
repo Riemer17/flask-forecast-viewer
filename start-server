@@ -1,0 +1,2 @@
+export FLASK_APP=flask-forecast-viewer.py
+flask run
