@@ -1,0 +1,70 @@
+<style>
+td {font:11px Arial; text-align:center; vertical-align: top;border-style: solid; border-width: 1px; border-color: #ddc; padding: 2px};
+th {font:bold 12px Arial; text-align:center; background-color:#ddd; border-color: #bbc; padding: 2px; text-align: top};
+td.grad {  /* only for demo, not really required */
+background-image: linear-gradient(to right, rgba(220, 220, 220, 1) 0%, rgba(240, 240, 240, 1) 100%);  /* your gradient */
+background-repeat: no-repeat;  /* don't remove */}
+p {font:11px Arial;}
+label {font:11px Arial;}
+button, input {font:11px Arial; text-align: center; box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+textarea {width: 650px; height: 200px; font:11px Arial; text-align: left; padding: 2px; box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+h1{font: bold 35px Arial; padding: 2px; margin-top: 5px; background-color: #eee;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+h2{font: bold 25px Arial; padding: 2px; margin-top: 5px; background-color: #eee;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+h3{font: bold 20px Arial; padding: 2px; margin-top: 5px; background-color: #eee;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+h4{font: bold 16px Arial; padding: 2px; margin-top: 5px; background-color: #ddd;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+b {font:12px Arial; font-weight:bold}
+.b_shadow {font: bold 12px Arial; padding: 3px; display: inline; background-color: #ddd;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+li {font:11px Arial;}margin-top: 5px;
+select {font:11px Arial;}
+
+body {padding: 25px;}
+table{border-collapse: collapse; margin: 10px; border-style: solid; border-width: 2px; border-color: #bbb; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+select{box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+iframe{height: 500px; width: 800px;}
+a{font: bold 10px Arial;}
+.topdiv {position: fixed; top: 3px; left: 3px;}
+.underdiv {position: fixed; height: 500px; widt: 800px;}
+
+.table-wrapper
+{
+    border: 0.5px solid #eee;
+    width: 90%;
+    height: 450px;
+    overflow: auto;
+}
+
+.tip
+{
+    text-decoration: none;
+}
+
+.tip:hover
+{
+    cursor: help;
+    position: relative;
+}
+
+.tip span
+{
+    display: none
+}
+
+.tip:hover span
+{
+    border: #c0c0c0 1px dotted;
+    font: 12px Arial;
+    padding: 2px;
+    display: block;
+    z-index: 100;
+    left: 0px;
+    margin: 1px;
+    position: absolute;
+    background-color: #eee;
+    top: 40px;
+    text-decoration: none;
+    border-style: solid;
+    border-width: thin;
+    border-color: #aaa;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+</style>
