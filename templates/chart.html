@@ -7,4 +7,12 @@
             {{ chart_select | safe }}
         </td>
     </tr>
+    <tr>
+        <td>
+            <h3>Weatherchart {{img_source | safe}}</h3>
+            <img src="{{ img_source | safe }}">
+        </td>
+    </tr>
+    <tr><td><h3>Zip content</h3></td></tr>
+    {{zip_files | safe}}
 </table>
