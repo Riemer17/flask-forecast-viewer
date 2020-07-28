@@ -1,4 +1,5 @@
 import zipfile
+from datetime import datetime as dt, timedelta
 
 from flask import Flask, render_template
 
@@ -18,10 +19,16 @@ def tag(the_tag, txt, attributes=''):
     return '<{tag}{attributes}>{txt}</{tag}>'.format(tag=the_tag, txt=txt,
            attributes=(('' if attributes == '' else ' ') + attributes))
 
+
 def read_zip():
+    first_date = (dt.now() - timedelta(days=14)).strftime('%Y%m%d%H%M%S')
     zip_name = r"resources/forecasts.zip"
     forecasts = zipfile.ZipFile(zip_name, 'r')
-    return ''.join([tag('tr',tag('td', file)) for file in forecasts.namelist()])
+    return ''.join([tag('tr',tag('td', file)) for file in forecasts.namelist()
+                    if file > f'forecasts_{first_date}.json'])
+
+def insert_css():
+    return open('static/style.css').read()
 
 
 @app.route('/')
@@ -34,6 +41,7 @@ def pick_chart(field):
     chart_select = create_select(range(20))
     img_source = create_img(field)
     zip_files = read_zip()
+    css = insert_css()
     return render_template('chart.html', chart_select=chart_select,
-                           img_source=img_source, zip_files=zip_files)
+                           img_source=img_source, zip_files=zip_files, css=css)
 
