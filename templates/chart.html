@@ -1,18 +1,10 @@
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{{ css | safe }}
 <h1>Weather forecast</h1>
 <table width="100%" height="90%">
-    <tr>
-        <td>
-            <h3>Pick a chart</h3>
-            {{ chart_select | safe }}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <h3>Weatherchart {{img_source | safe}}</h3>
-            <img src="{{ img_source | safe }}">
-        </td>
-    </tr>
+    <tr><td><h3>Available keys</h3></td></tr>
+    <tr><td>{{fv_keys | safe}}</td></tr>
+    <tr><td><h3>Weatherchart {{img_source | safe}}</h3>{{ field_data | safe }}</td></tr>
+    <tr><td><h3>Pick a chart</h3>{{ chart_select | safe }}</td></tr>
     <tr><td><h3>Zip content</h3></td></tr>
-    {{zip_files | safe}}
+    <tr><td>{{zip_files | safe}}</td></tr>
 </table>
