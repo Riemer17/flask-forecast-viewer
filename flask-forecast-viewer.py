@@ -1,6 +1,7 @@
 import base64
 import io
 import matplotlib.pyplot as plt
+import numpy as np
 import json
 import zipfile
 import pandas as pd
@@ -22,6 +23,7 @@ class ForecastViz():
         self.days = defaultdict(lambda: defaultdict(list))
         self.forecasts = zipfile.ZipFile(self.zip_file, 'r')
         self.process_day_data(first_date)
+        print(f'Got {len(fv.days)} days')
 
     def process_day_data(self, first_date):
         for file in self.forecasts.namelist():
@@ -77,13 +79,24 @@ def insert_css():
     return open('static/style.css').read()
 
 
+def set_ticks(dfp, ax):
+    step = int(len(dfp) / 10)
+    ax.set_xticks([i for i, d in enumerate(dfp.date) if i % step == 0])
+    ax.set_xticklabels([d[:10] for i, d in enumerate(dfp.date) if i % step == 0])
+    plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+
+
 def handle_on_select(field, fv):
     if field in fv.days.keys():
         return create_select([f'fk_{field}_{k}' for k in fv.days[field].keys()])
     elif field.startswith('fk'):
         parts = field.split('_')
         dfd = pd.DataFrame(fv.days[parts[1]][parts[2]], columns=['date', parts[1]])
-        dfd.plot(kind='bar', alpha=0.5, width=1, linewidth=.3, edgecolor='black')
+        ax = dfd.plot(kind='bar', alpha=0.5, width=1, linewidth=.3, edgecolor='black')
+        set_ticks(dfd, ax)
+        plt.tight_layout()
+        plt.ylim((dfd[parts[1]].min(), dfd[parts[1]].max() + 1))
+        plt.grid()
         return create_select([f'fk_{parts[1]}_{k}' for k in fv.days[parts[1]].keys()]) +\
                get_chart_image_stream(field) + dfd.to_html(index=False)
     else:
@@ -94,10 +107,14 @@ def get_viz_data(field):
     global fv
     if not fv.days:
         fv.get_days()
-        print(f'Got {len(fv.days)} days')
     fv_keys = fv.get_cats()
     field_data = handle_on_select(field, fv)
     return field_data, fv_keys
+
+
+def get_buttons():
+    command = 'onclick=window.location.href="refresh"'
+    return tag('button', 'Refresh Data', command)
 
 
 @app.route('/')
@@ -108,11 +125,13 @@ def index():
 
 @app.route('/<field>')
 def pick_chart(field):
+    if field == 'refresh':
+        fv.get_days()
     chart_select = create_select(range(20))
     img_source = create_img(field)
     zip_files = read_zip()
     css = insert_css()
     field_data, fv_keys = get_viz_data(field)
     return render_template('chart.html', chart_select=chart_select, img_source=img_source,
-                           field_data=field_data, zip_files=zip_files, css=css, fv_keys=fv_keys)
+        buttons=get_buttons(), field_data=field_data, zip_files=zip_files, css=css, fv_keys=fv_keys)
 
