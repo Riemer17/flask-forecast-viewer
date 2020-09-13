@@ -50,7 +50,7 @@ nl = '\n'
 class ForecastVizualization():
 
     def __init__(self):
-        self.zip_file = fr'results/forecasts.zip'
+        self.zip_file = fr'resources/forecasts.zip'
         # self.zip_file = fr'c:\data\forecasts.zip'
 
     def store_item(self, k, v, day):
@@ -126,7 +126,7 @@ class ForecastVizualization():
         self.set_ticks(ax, df_hm2)
         plt.grid(alpha=.4)
         fig.tight_layout()
-        fig.savefig(rf'results/bu_day_{category}.png')
+        fig.savefig(rf'resources/bu_day_{category}.png')
         # fig.savefig(rf'c:\data\bu_day_{category}.png')
 
 fv = ForecastVizualization()

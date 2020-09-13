@@ -11,9 +11,9 @@ class ForecastSnapper():
         self.url = 'https://forecast.buienradar.nl/2.0/forecast/2759794'
         self.request_header = headers = {'User-Agent': u'Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36            (KHTML, like Gecko) Chrome/32.0.1667.0 Safari/537.36', 'X-Cookies-Accepted': '1'}
         ts = dt.now().strftime('%Y%m%d%H%M')
-        self.file_name = fr'results/forecasts_{ts}.json'
-        self.permanent_file_name = fr'results/forecasts.json'
-        self.zip_file = fr'results/forecasts.zip'
+        self.file_name = fr'resources/forecasts_{ts}.json'
+        self.permanent_file_name = fr'resources/forecasts.json'
+        self.zip_file = fr'resources/forecasts.zip'
 
     def snap_and_store_forecast(self):
         r = requests.get(self.url, headers=self.request_header)
